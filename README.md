@@ -132,8 +132,15 @@ The analysis demonstrates that discounts influence visibility but not perceived 
 
 ---
 
+## 📓 Notes
+
+### Chapter  — Excel notes
+
+👉 [View Excel Notes on Google Colab](https://colab.research.google.com/drive/1ulSG0WTP4DlBuCfiNp8EQBUkVLn-budP#scrollTo=9R2K9sNJ8tL8)
+
+---
+
 ## Author
 
 Arnav Heerakar
-GitHub: https://github.com/arnav-is-op
-LinkedIn: https://www.linkedin.com/in/arnav-is-op
+
