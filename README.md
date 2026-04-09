@@ -1,34 +1,37 @@
 # Amazon Sales Analysis — Excel Cleaning + Power BI Dashboard
 
-An end-to-end data analysis project on Amazon product data. The dataset was cleaned and feature-engineered in Excel, then analyzed and visualized in Power BI to extract insights about pricing, discounts, ratings, and product demand.
+End-to-end data analysis of Amazon product listings. Data preprocessing and feature engineering were performed in Excel, followed by analytical modeling and visualization in Power BI to evaluate pricing behavior, discount strategies, product quality, and demand patterns.
 
 ---
 
 ## Dataset
 
-**Source:** https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset
+**Source:**  
+https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset  
 
-The dataset contains product-level information such as price, discount, ratings, review counts, and product categories.
+Contains product-level attributes including pricing, discounts, ratings, review counts, and categorical hierarchies.
 
 ---
 
 ## Project Structure
 
-```
 amazon-sales-analysis/
 │
 ├── data/
-│   ├── amazon_raw.csv
-│   └── amazon_cleaned.xlsx
+│ ├── amazon_raw.csv
+│ └── amazon_cleaned.xlsx
 │
 ├── powerbi/
-│   ├── project.pbix
-│   └── screenshots/
-│       ├── page1_product_overview.png
-│       └── page2_performance_analysis.png
+│ ├── project.pbix
+│
+├── images/
+│ ├── excel_cleaned_preview.png
+│ ├── dashboard_product_overview.png
+│ └── dashboard_performance_analysis.png
 │
 └── README.md
-```
+---
+
 
 ---
 
@@ -36,41 +39,43 @@ amazon-sales-analysis/
 
 ### Raw Data Issues
 
-* Currency symbols present in numeric columns (₹ values)
-* Discount values stored as text percentages (e.g., 64%)
-* Category hierarchy combined into a single column
-* Irrelevant fields adding noise
+- Currency symbols embedded in numeric columns (₹)
+- Discount values stored as string percentages (e.g., "64%")
+- Hierarchical category data compressed into a single column
+- Presence of irrelevant or redundant fields
+- Inconsistent data types affecting downstream analysis
 
 ---
 
-### Cleaning Steps
+### Cleaning Operations
 
-* Removed currency symbols and converted price columns to numeric
-* Converted percentage values into decimal format (64% → 0.64)
-* Removed unnecessary columns to reduce noise
-* Standardized data types for compatibility with Power BI and SQL
+- Stripped currency symbols and converted price fields to numeric format
+- Transformed percentage strings into decimal representation (`64% → 0.64`)
+- Removed non-informative columns to reduce dimensional noise
+- Standardized data types for compatibility with Power BI and analytical workflows
+- Ensured consistency across all numeric and categorical fields
 
 ---
 
 ### Feature Engineering
 
-| Column                | Logic                                            | Purpose                            |
-| --------------------- | ------------------------------------------------ | ---------------------------------- |
-| `price_bucket`        | Low / Medium / High                              | Segment products by price          |
-| `discount_percentage` | (actual_price - discounted_price) / actual_price | Normalize discount                 |
-| `discount_bracket`    | Low / Medium / High                              | Simplify discount comparison       |
-| `rating_bucket`       | Good / Average / Poor                            | Group product quality              |
-| `popularity_flag`     | rating_count > 10000                             | Identify high-demand products      |
-| `value_score`         | rating × rating_count / discounted_price         | Combine value, demand, and quality |
+| Column                | Logic                                            | Purpose                                      |
+|---------------------|--------------------------------------------------|----------------------------------------------|
+| `price_bucket`       | Low / Medium / High                              | Segment products by pricing tiers            |
+| `discount_percentage`| (actual_price - discounted_price) / actual_price | Normalize discount magnitude                 |
+| `discount_bracket`   | Low / Medium / High                              | Enable categorical comparison of discounts   |
+| `rating_bucket`      | Good / Average / Poor                            | Group product quality levels                 |
+| `popularity_flag`    | rating_count > 10000                             | Identify high-engagement products            |
+| `value_score`        | (rating × rating_count) / discounted_price       | Composite metric: quality × demand ÷ price   |
 
 ---
 
-### Key Learnings from Cleaning
+### Observations from Data Preparation
 
-* Raw data requires transformation before analysis
-* Feature engineering significantly improves insight quality
-* Bucketing continuous variables improves interpretability
-* Median is more reliable than average for skewed data like price
+- Raw datasets are structurally unsuitable for direct analysis
+- Feature engineering materially increases analytical depth
+- Bucketing continuous variables improves interpretability in dashboards
+- Median is statistically more robust than mean for skewed distributions (e.g., price)
 
 ---
 
@@ -78,69 +83,68 @@ amazon-sales-analysis/
 
 ### Page 1 — Product Overview
 
-**Questions Answered:**
+**Analytical Focus:**
 
-* How are products distributed across price segments?
-* How are products distributed by quality?
-* Which categories perform best in terms of ratings?
-* Which categories have the highest engagement?
+- Distribution of products across price segments
+- Distribution across rating categories
+- Category-level performance in ratings
+- Category-level engagement (rating counts)
 
-**KPIs:**
+**Key Metrics:**
 
-* Median Rating
-* Median Discounted Price
-* Total Products
+- Median Rating  
+- Median Discounted Price  
+- Total Product Count  
 
 ---
 
 ### Page 2 — Performance Analysis
 
-**Questions Answered:**
+**Analytical Focus:**
 
-* Do higher discounts improve ratings?
-* Do higher discounts increase demand?
-* Are popular products better rated?
-* Do popular products provide better value?
-* What is the relationship between price and rating?
+- Relationship between discount magnitude and ratings
+- Impact of discounts on demand (rating_count)
+- Comparison of popular vs non-popular products
+- Relationship between price and perceived quality
+- Evaluation of composite value (`value_score`)
 
 ---
 
 ## Key Insights
 
-* Majority of products fall into the **Good rating category**, indicating rating inflation or bias
-* Medium and High price segments dominate the dataset
-* Discounts do not significantly influence product ratings
-* Popular products tend to have slightly higher ratings and significantly higher engagement
-* Engagement is concentrated in a few categories, especially Electronics
-* Price and rating show a weak relationship — higher price does not guarantee better ratings
-* High value_score products are typically low-priced with high engagement and good ratings
+- Rating distribution is heavily skewed toward the “Good” category, indicating possible rating inflation
+- Mid and high-priced products dominate the dataset composition
+- Discount magnitude shows negligible correlation with product ratings
+- High-engagement products exhibit marginally higher ratings but disproportionately higher visibility
+- Engagement is concentrated within specific categories, primarily Electronics
+- Price does not exhibit strong predictive power for rating quality
+- High `value_score` products are typically low-cost, high-engagement, and well-rated
 
 ---
 
 ## Conclusion
 
-The analysis demonstrates that discounts influence visibility but not perceived quality. Product performance is more strongly driven by popularity and category. Price alone is not a reliable indicator of product rating or value.
+Discounting impacts visibility but does not materially influence perceived product quality. Product performance is primarily driven by category dynamics and user engagement rather than pricing. Value emerges from the interaction of demand, rating, and affordability—not price alone.
 
 ---
 
 ## Tools Used
 
-| Tool     | Purpose                                   |
-| -------- | ----------------------------------------- |
-| Excel    | Data cleaning and feature engineering     |
-| Power BI | Data visualization and dashboard creation |
+| Tool     | Role                                           |
+|----------|-----------------------------------------------|
+| Excel    | Data cleaning, transformation, feature creation |
+| Power BI | Data modeling, visualization, dashboarding     |
 
 ---
 
-## 📓 Notes
+## Notes
 
-### Chapter  — Excel notes
+### Excel Reference Notes
 
-👉 [View Excel Notes on Google Colab](https://colab.research.google.com/drive/1ulSG0WTP4DlBuCfiNp8EQBUkVLn-budP#scrollTo=9R2K9sNJ8tL8)
+https://colab.research.google.com/drive/1ulSG0WTP4DlBuCfiNp8EQBUkVLn-budP#scrollTo=9R2K9sNJ8tL8
 
 ---
 
 ## Author
 
 Arnav Heerakar
-
