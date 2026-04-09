@@ -14,8 +14,25 @@ Contains product-level attributes including pricing, discounts, ratings, review 
 ---
 
 ## Project Structure
+ 
+```
+amazon-sales-analysis/
+│
+├── data/
+│   ├── amazon_raw.csv            ← Original Kaggle dataset (unmodified)
+│   └── amazon_cleaned.xlsx       ← Cleaned and feature-engineered dataset
+│
+├── powerbi/
+│   ├── project.pbix              ← Power BI report file
+│   └── screenshots/
+│       ├── page1_product_overview.png
+│       └── page2_performance_analysis.png
+│
+└── README.md
+```
+ 
+---
 
-amazon-sales-analysis/ │ ├── data/ │ ├── amazon_raw.csv │ └── amazon_cleaned.xlsx │ ├── powerbi/ │ ├── project.pbix │ └── screenshots/ │ ├── page1_product_overview.png │ └── page2_performance_analysis.png │ └── README.md
 ---
 
 
@@ -56,18 +73,17 @@ amazon-sales-analysis/ │ ├── data/ │ ├── amazon_raw.csv │ └�
 
 ---
 
-### Observations from Data Preparation
+## Excel Output Preview
 
-- Raw datasets are structurally unsuitable for direct analysis
-- Feature engineering materially increases analytical depth
-- Bucketing continuous variables improves interpretability in dashboards
-- Median is statistically more robust than mean for skewed distributions (e.g., price)
+![Excel Cleaned Data](images/excel_cleaned_preview.png)
 
 ---
 
 ## Part 2 — Power BI Dashboard
 
 ### Page 1 — Product Overview
+
+![Product Overview Dashboard](images/dashboard_product_overview.png)
 
 **Analytical Focus:**
 
@@ -85,6 +101,8 @@ amazon-sales-analysis/ │ ├── data/ │ ├── amazon_raw.csv │ └�
 ---
 
 ### Page 2 — Performance Analysis
+
+![Performance Analysis Dashboard](images/dashboard_performance_analysis.png)
 
 **Analytical Focus:**
 
