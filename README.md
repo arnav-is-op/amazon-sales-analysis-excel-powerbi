@@ -15,21 +15,7 @@ Contains product-level attributes including pricing, discounts, ratings, review 
 
 ## Project Structure
 
-amazon-sales-analysis/
-│
-├── data/
-│ ├── amazon_raw.csv
-│ └── amazon_cleaned.xlsx
-│
-├── powerbi/
-│ ├── project.pbix
-│
-├── images/
-│ ├── excel_cleaned_preview.png
-│ ├── dashboard_product_overview.png
-│ └── dashboard_performance_analysis.png
-│
-└── README.md
+amazon-sales-analysis/ │ ├── data/ │ ├── amazon_raw.csv │ └── amazon_cleaned.xlsx │ ├── powerbi/ │ ├── project.pbix │ └── screenshots/ │ ├── page1_product_overview.png │ └── page2_performance_analysis.png │ └── README.md
 ---
 
 
